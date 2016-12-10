@@ -92,24 +92,29 @@ public class GameManager {
 	 * }
 	 */
 
-	 private void move() {
-	 // TODO Auto-generated method stub
-	 //walk according to received key
-		 if(!CodeUtility.keyPressed.isEmpty()){
-			 if(CodeUtility.keyPressed.contains(KeyCode.A)){
-				 player.setX(player.getX()-10);
-			 }
-			 if(CodeUtility.keyPressed.contains(KeyCode.D)){
-				 player.setX(player.getX()+10);
-			 }
-			 if(CodeUtility.keyPressed.contains(KeyCode.W)){
-				 player.setY(player.getY()-15);
-			 }
-		 }
-		 else if(player.getY()+15<=475){
-			 player.setY(player.getY()+15);
-		 }
-	 }
+	private void move() {
+		// TODO Auto-generated method stub
+		// walk according to received key
+		if (!CodeUtility.keyPressed.isEmpty()) {
+				if (CodeUtility.keyPressed.contains(KeyCode.A)&&player.getX()-10>=50) {
+					player.setX(player.getX() - 10);
+					if (player.getY() + 15 <= 475 && !CodeUtility.keyPressed.contains(KeyCode.W)) {
+						player.setY(player.getY() + 15);
+					}
+				}
+				if (CodeUtility.keyPressed.contains(KeyCode.D)&&player.getX()+10<=700) {
+					player.setX(player.getX() + 10);
+					if (player.getY() + 15 <= 475 && !CodeUtility.keyPressed.contains(KeyCode.W)) {
+						player.setY(player.getY() + 15);
+					}
+				}
+				if (CodeUtility.keyPressed.contains(KeyCode.W)&&player.getY()-15>=50) {
+					player.setY(player.getY() - 15);
+				}
+			} else if (player.getY() + 15 <= 475) {
+				player.setY(player.getY() + 15);
+		}
+	}
 
 	public void receiveKey(KeyCode new_code) {
 		// TODO Auto-generated method stub
