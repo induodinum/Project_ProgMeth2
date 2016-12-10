@@ -101,9 +101,11 @@ public class GameManager {
 			
 			if(new_code == KeyCode.A){
 				//walk left
+				player.setX(player.getX()-10);
 				}
 			else if(new_code == KeyCode.D){
 				//walk right
+				player.setX(player.getX()+10);
 				}
 		}
 	}

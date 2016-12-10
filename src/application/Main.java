@@ -17,7 +17,6 @@ public class Main extends Application {
 		root.getChildren().add(gsc);
 		gsc.paintComponents();
 		
-		
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Bobo Game");
 		primaryStage.show();
