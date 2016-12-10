@@ -7,12 +7,13 @@ public class PlayerChar extends Entity{
 	public static int moveSpeed;
 	public static int life,colorType;
 	public static int width,height;
-	public PlayerChar(int x, int y) {
+	public PlayerChar(int x, int y,int colorType) {
 		//Fill in here
-		super(x, y, 50, 50);
+		super(x, y, 50, 75);
 		life = 5;
 		isDestroy = false;
 		z = 2;
+		this.colorType=colorType;
 		
 	}
 

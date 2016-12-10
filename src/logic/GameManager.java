@@ -9,12 +9,12 @@ import javafx.scene.input.KeyCode;
 import model.*;
 public class GameManager {
 	private int timer=0;
-	public static int score=0;
+	public static int hp=100;
 	private PlayerChar player;
 	private BossChar boss;
 	public GameManager(){
-		player = new PlayerChar(100,100);
-		boss = new BossChar(600,100);
+		player = new PlayerChar(150,475,0);
+		boss = new BossChar(550,400);
 		RenderableHolder.getInstance().add(player);
 		RenderableHolder.getInstance().add(boss);
 		

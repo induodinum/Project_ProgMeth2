@@ -7,7 +7,7 @@ public class BossChar extends Entity{
 	public static int life,colorType;
 	public BossChar(int x, int y) {
 		//Fill in here
-		super(x,y,100,100);
+		super(x,y,150,150);
 		life = 5;
 		isDestroy = false;
 		z = 2;

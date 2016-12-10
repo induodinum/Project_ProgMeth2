@@ -11,45 +11,48 @@ public class RenderableHolder {
 	private static final RenderableHolder instance = new RenderableHolder();
 	private List<IRenderable> entities;
 	private Comparator<IRenderable> comparator;
-	public static Image[] playerChar,bullet;
+	public static Image[] playerChar, bullet;
 	public static Image bossChar;
-	
-	public RenderableHolder(){
+
+	public RenderableHolder() {
 		entities = new ArrayList<IRenderable>();
 		playerChar = new Image[3];
 		bullet = new Image[3];
 		comparator = (IRenderable o1, IRenderable o2) -> {
-			if(o1.getZ() > o2.getZ()){
+			if (o1.getZ() > o2.getZ()) {
 				return 1;
-			}else if(o1.getZ() == o2.getZ()){
+			} else if (o1.getZ() == o2.getZ()) {
 				return 0;
-			}else
+			} else
 				return -1;
 		};
 	}
-	static{
+
+	static {
 		loadResource();
 	}
-	
-	public synchronized void add(IRenderable entity){
-		//Fill in here
+
+	public synchronized void add(IRenderable entity) {
+		// Fill in here
 		System.out.println("add");
 		entities.add(entity);
 		Collections.sort(entities, comparator);
 	}
+
 	private static void loadResource() {
 		// TODO Auto-generated method stub
 		ClassLoader loader = ClassLoader.getSystemClassLoader();
-		playerChar[0] = new Image(loader.getResourceAsStream("playerChar0.png"));
-		playerChar[1] = new Image(loader.getResourceAsStream("playerChar1.png"));
-		playerChar[2] = new Image(loader.getResourceAsStream("playerChar2.png"));
-		bossChar = new Image(loader.getResourceAsStream("bossChar.png"));
+		playerChar[0] = new Image(loader.getResource("playerChar0.png").toString(), 50, 75, false, false);
+		playerChar[1] = new Image(loader.getResource("playerChar1.png").toString(), 50, 75, false, false);
+		playerChar[2] = new Image(loader.getResource("playerChar2.png").toString(), 50, 75, false, false);
+		bossChar = new Image(loader.getResource("bossChar.png").toString(), 150, 150, false, false);
 		bullet[0] = new Image(loader.getResourceAsStream("bullet0.png"));
 		bullet[1] = new Image(loader.getResourceAsStream("bullet1.png"));
 		bullet[2] = new Image(loader.getResourceAsStream("bullet2.png"));
-		
+
 	}
-	public synchronized void remove(int index){
+
+	public synchronized void remove(int index) {
 		System.out.println("remove");
 		entities.remove(index);
 		Collections.sort(entities, comparator);
