@@ -50,7 +50,11 @@ public class GameManager {
 				player.delay--;
 			}else{
 				player.setAttack(false);
-				slash.setDestroy();
+				for (IRenderable i : RenderableHolder.getInstance().getEntities()){
+					if(i instanceof Slash){
+						((Slash) i).setDestroy();
+					}
+				}
 			}
 		}
 	}
@@ -138,10 +142,11 @@ public class GameManager {
 				player.setAttack(true);
 				player.delay = 3;
 				if(player.faceDirection == 1){
-					slash = new Slash(player.getX() + player.getWidth(), player.getY(), player);
+					slash = new Slash(player.getX() + player.getWidth(), player.getY() - 15, player);
 				}else{
-					slash = new Slash(player.getX() - 75, player.getY(), player);
+					slash = new Slash(player.getX() - 100, player.getY() - 15, player);
 				}
+				slash.setFaceDirection(player.faceDirection);
 				addEntity(slash);
 			}
 			

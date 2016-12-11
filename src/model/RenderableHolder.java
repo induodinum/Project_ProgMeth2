@@ -61,8 +61,8 @@ public class RenderableHolder {
 		bullet[0] = new Image(loader.getResourceAsStream("bullet0.png"));
 		bullet[1] = new Image(loader.getResourceAsStream("bullet1.png"));
 		bullet[2] = new Image(loader.getResourceAsStream("bullet2.png"));
-		slashLeft = new Image(loader.getResourceAsStream("slashLeft.png"));
-		slashRight = new Image(loader.getResourceAsStream("slashRight.png"));
+		slashLeft = new Image(loader.getResource("slashLeft.png").toString(), 100, 80, false, false);
+		slashRight = new Image(loader.getResource("slashRight.png").toString(), 100, 80, false, false);
 
 	}
 
