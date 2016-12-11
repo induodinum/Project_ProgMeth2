@@ -12,7 +12,7 @@ public class RenderableHolder {
 	private List<IRenderable> entities;
 	private Comparator<IRenderable> comparator;
 	public static Image[] playerCharLeft,playerCharRight,playerCharAttackLeft,playerCharAttackRight, bullet;
-	public static Image bossChar,slashLeft,slashRight;
+	public static Image bossChar,bossCharMini,slashLeft,slashRight,heart;
 
 	public RenderableHolder() {
 		entities = new ArrayList<IRenderable>();
@@ -58,12 +58,13 @@ public class RenderableHolder {
 		playerCharAttackRight[1] = new Image(loader.getResource("playerCharAttackRight1.png").toString(), 50, 50, false, false);
 		playerCharAttackRight[2] = new Image(loader.getResource("playerCharAttackRight2.png").toString(), 50, 50, false, false);
 		bossChar = new Image(loader.getResource("bossChar.png").toString(), 150, 150, false, false);
+		bossCharMini = new Image(loader.getResource("bossChar.png").toString(), 50, 50, false, false);
 		bullet[0] = new Image(loader.getResourceAsStream("bullet0.png"));
 		bullet[1] = new Image(loader.getResourceAsStream("bullet1.png"));
 		bullet[2] = new Image(loader.getResourceAsStream("bullet2.png"));
 		slashLeft = new Image(loader.getResource("slashLeft.png").toString(), 100, 80, false, false);
 		slashRight = new Image(loader.getResource("slashRight.png").toString(), 100, 80, false, false);
-
+		heart = new Image(loader.getResource("heart.png").toString(), 30, 30, false, false);
 	}
 
 	public synchronized void remove(int index) {

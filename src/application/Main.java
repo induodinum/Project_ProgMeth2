@@ -9,13 +9,14 @@ import ui.GameScreen;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.AudioClip;
 
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		StackPane root = new StackPane();
-		Scene scene = new Scene(root, 800, 600);
-		GameScreen gsc = new GameScreen(800,600);
+		Scene scene = new Scene(root, 800, 800);
+		GameScreen gsc = new GameScreen(800,800);
 		GameManager gm = new GameManager();
 		root.getChildren().add(gsc);
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>(){
@@ -34,6 +35,14 @@ public class Main extends Application {
 				gm.dropKey(event.getCode());
 			}
 		});
+		Thread t = new Thread(new Runnable(){
+			public void run(){
+				AudioClip sound = new AudioClip(ClassLoader.getSystemResource("bgm.mp3").toString());
+				sound.setVolume(0.05);
+				sound.play();
+			}
+		});
+		t.start();
 		new AnimationTimer() {
 			Long start=0l;
 			@Override
