@@ -8,7 +8,8 @@ public class PlayerChar extends Entity{
 	public static int life,colorType;
 	//direction 1 == right, 0 == left
 	public static int faceDirection = 1;
-	private int animationFrame = 0;
+	//private int animationFrame = 0;
+	public static int delay = 3;
 	private boolean attack = false;
 	public PlayerChar(int x, int y,int colorType) {
 		//Fill in here

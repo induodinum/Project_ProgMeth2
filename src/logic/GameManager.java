@@ -40,10 +40,16 @@ public class GameManager {
 		removeDestroyEntity();
 		if (timer % 20 == 0 && !player.isDestroy()) {
 			Random rand = new Random();
-			int xx = rand.nextInt(470);
-			int yy = rand.nextInt(470);
-			Bullet bullet = new Bullet(boss.getX() - 10, boss.getY());
+			int xx = rand.nextInt(200);
+			Bullet bullet = new Bullet(boss.getX() - xx, boss.getY());
 			// addEntity(bullet);
+		}
+		if(timer % 100 == 0){
+			if(player.delay>0){
+				player.delay--;
+			}else{
+				player.setAttack(false);
+			}
 		}
 	}
 
@@ -78,6 +84,11 @@ public class GameManager {
 			if (i instanceof Bullet) {
 				if (isCollide(player, (Bullet) i)) {
 					((Bullet) i).setDestroy();
+					player.decreaseLife();
+				}
+			}
+			if(i instanceof BossChar){
+				if(isCollide(player, (BossChar) i)) {
 					player.decreaseLife();
 				}
 			}
@@ -117,21 +128,13 @@ public class GameManager {
 			CodeUtility.keyPressed.add(new_code);
 			CodeUtility.keyTriggered.add(new_code);
 			if(new_code == KeyCode.J){
-				if(player.getX()-100 >= 50){
-					player.setX(player.getX() - 100);
-				}else{
-					player.setX(50);
-				}
-				
+				player.colorType = (player.colorType + 1)%3;
 			}
-			if(new_code == KeyCode.L){
-				if(player.getX()+100 <= 650){
-					player.setX(player.getX() + 100);
-				}else{
-					player.setX(650);
-				}
+			if(new_code == KeyCode.K){
+				player.setAttack(true);
+				player.delay = 3;
 			}
-			move();
+			
 		}
 	}
 
