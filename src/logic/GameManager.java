@@ -42,9 +42,9 @@ public class GameManager {
 			Random rand = new Random();
 			int xx = rand.nextInt(200);
 			Bullet bullet = new Bullet(boss.getX() - xx, boss.getY());
-			// addEntity(bullet);
+//			 addEntity(bullet);
 		}
-		if(timer % 100 == 0){
+		if(timer % 4 == 0){
 			if(player.delay>0){
 				player.delay--;
 			}else{
