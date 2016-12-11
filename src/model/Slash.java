@@ -5,6 +5,7 @@ import javafx.scene.canvas.GraphicsContext;
 public class Slash extends Entity {
 	public boolean isDestroy;
 	public int faceDirection;
+	public int delay = 0;
 	public Slash(int x, int y, PlayerChar player) {
 		//Fill in here
 		super(x,y,100,80);

@@ -5,6 +5,7 @@ import javafx.scene.canvas.GraphicsContext;
 public class BossChar extends Entity{
 	public static boolean isDestroy;
 	public static int life,colorType;
+	public static int delay=0;
 	public BossChar(int x, int y) {
 		//Fill in here
 		super(x,y,150,150);

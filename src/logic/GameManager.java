@@ -42,20 +42,29 @@ public class GameManager {
 		if (timer % 20 == 0 && !player.isDestroy()) {
 			Random rand = new Random();
 			int xx = rand.nextInt(200);
-			//int yy = rand.nextInt(3);
-			addEntity(new Bullet(boss.getX(), boss.getY(),0));
+			int yy = rand.nextInt(3);
+			addEntity(new Bullet(boss.getX() - xx, boss.getY(),yy));
 		}
-		if(timer % 4 == 0){
+		if(timer % 10 == 0){
 			if(player.delay>0){
 				player.delay--;
 			}else{
 				player.setAttack(false);
+			}
+			
+			if(slash.delay>0){
+				slash.delay--;
+			}else{
 				for (IRenderable i : RenderableHolder.getInstance().getEntities()){
 					if(i instanceof Slash){
 						((Slash) i).setDestroy();
 						slash = new Slash(1000,1000,player);
 					}
 				}
+			}
+			
+			if(boss.delay>0){
+				boss.delay--;
 			}
 		}
 	}
@@ -100,8 +109,12 @@ public class GameManager {
 				if(isCollide(player, (BossChar) i)) {
 					player.decreaseLife();
 				}
-				if(isCollide(slash, (BossChar) i))
-					 boss.decreaseLife();
+				if(isCollide(slash, (BossChar) i) && boss.delay == 0){
+					boss.decreaseLife();
+					System.out.println("jeb");
+					boss.delay = 4;
+				}
+					 
 			}
 		}
 
@@ -136,7 +149,7 @@ public class GameManager {
 			if(new_code == KeyCode.J){
 				player.colorType = (player.colorType + 1)%3;
 			}
-			if(new_code == KeyCode.K){
+			if(new_code == KeyCode.K && player.delay == 0){
 				player.setAttack(true);
 				player.delay = 3;
 				if(player.faceDirection == 1){
@@ -145,6 +158,7 @@ public class GameManager {
 					slash = new Slash(player.getX() - 100, player.getY() - 15, player);
 				}
 				slash.setFaceDirection(player.faceDirection);
+				slash.delay = 2;
 				addEntity(slash);
 			}
 			
