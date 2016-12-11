@@ -7,7 +7,7 @@ public class Slash extends Entity {
 	public int faceDirection;
 	public Slash(int x, int y, PlayerChar player) {
 		//Fill in here
-		super(x,y,75,50);
+		super(x,y,100,80);
 		isDestroy = false;
 		z = 3;
 		

@@ -13,7 +13,7 @@ public class GameManager {
 	public static int hp = 100;
 	private PlayerChar player;
 	private BossChar boss;
-	private Slash slash;
+	private Slash slash = new Slash(1000,1000,player);
 
 	public GameManager() {
 		player = new PlayerChar(150, 500, 0);
@@ -42,8 +42,8 @@ public class GameManager {
 		if (timer % 20 == 0 && !player.isDestroy()) {
 			Random rand = new Random();
 			int xx = rand.nextInt(200);
-			int yy = rand.nextInt(3);
-			addEntity(new Bullet(boss.getX() - xx, boss.getY(),yy));
+			//int yy = rand.nextInt(3);
+			addEntity(new Bullet(boss.getX(), boss.getY(),0));
 		}
 		if(timer % 4 == 0){
 			if(player.delay>0){
@@ -53,7 +53,7 @@ public class GameManager {
 				for (IRenderable i : RenderableHolder.getInstance().getEntities()){
 					if(i instanceof Slash){
 						((Slash) i).setDestroy();
-						slash = null;
+						slash = new Slash(1000,1000,player);
 					}
 				}
 			}
