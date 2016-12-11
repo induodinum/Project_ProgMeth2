@@ -3,16 +3,17 @@ package model;
 import javafx.scene.canvas.GraphicsContext;
 
 public class Bullet extends Entity {
-	public static boolean isDestroy;
+	public boolean isDestroy;
 	public static int moveSpeed;
 	public static int moveDirectionX,moveDirectionY;
-	public static int life,colorType;
-	public Bullet(int x, int y) {
+	public int life,colorType;
+	public Bullet(int x, int y, int colorType) {
 		//Fill in here
 		super(x,y,20,20);
 		moveSpeed = 5;
 		isDestroy = false;
 		z = 2;
+		this.colorType = colorType;
 		
 	}
 

@@ -40,9 +40,9 @@ public class GameManager {
 		removeDestroyEntity();
 		if (timer % 20 == 0 && !player.isDestroy()) {
 			Random rand = new Random();
-			int xx = rand.nextInt(200);
-			Bullet bullet = new Bullet(boss.getX() - xx, boss.getY());
-			 addEntity(bullet);
+			int xx = rand.nextInt(500);
+			int yy = rand.nextInt(3);
+			addEntity(new Bullet(boss.getX() - xx, boss.getY(),yy));
 		}
 		if(timer % 4 == 0){
 			if(player.delay>0){
