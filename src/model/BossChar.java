@@ -8,7 +8,7 @@ public class BossChar extends Entity{
 	public BossChar(int x, int y) {
 		//Fill in here
 		super(x,y,150,150);
-		life = 5;
+		life = 10;
 		isDestroy = false;
 		z = 2;
 		
@@ -30,5 +30,12 @@ public class BossChar extends Entity{
 	
 	public void setDestroy(){
 		isDestroy=true;
+	}
+	
+	public void decreaseLife(){
+		life--;
+		if(life == 0){
+			setDestroy();
+		}
 	}
 }

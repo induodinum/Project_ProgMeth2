@@ -41,7 +41,7 @@ public class GameManager {
 		removeDestroyEntity();
 		if (timer % 20 == 0 && !player.isDestroy()) {
 			Random rand = new Random();
-			int xx = rand.nextInt(500);
+			int xx = rand.nextInt(200);
 			int yy = rand.nextInt(3);
 			addEntity(new Bullet(boss.getX() - xx, boss.getY(),yy));
 		}
@@ -53,6 +53,7 @@ public class GameManager {
 				for (IRenderable i : RenderableHolder.getInstance().getEntities()){
 					if(i instanceof Slash){
 						((Slash) i).setDestroy();
+						slash = null;
 					}
 				}
 			}
@@ -68,46 +69,43 @@ public class GameManager {
 		}
 	}
 
-	private boolean isCollide(PlayerChar player, Entity e) {
-		return checkX(player, e) && checkY(player, e);
+	private boolean isCollide(Entity a, Entity e) {
+		return checkX(a, e) && checkY(a, e);
 	}
 
-	private boolean checkX(PlayerChar player, Entity e) {
-		return (player.getX() + player.getWidth() > e.getX() && player.getX() < e.getX())
-				|| (e.getX() + e.getWidth() > player.getX() && e.getX() < player.getX());
+	private boolean checkX(Entity a, Entity e) {
+		return (a.getX() + a.getWidth() > e.getX() && a.getX() < e.getX())
+				|| (e.getX() + e.getWidth() > a.getX() && e.getX() < a.getX());
 	}
 
-	private boolean checkY(PlayerChar player, Entity e) {
-		return (player.getY() + player.getHeight() > e.getY() && player.getY() < e.getY())
-				|| (e.getY() + e.getHeight() > player.getY() && e.getY() < player.getY());
+	private boolean checkY(Entity a, Entity e) {
+		return (a.getY() + a.getHeight() > e.getY() && a.getY() < e.getY())
+				|| (e.getY() + e.getHeight() > a.getY() && e.getY() < a.getY());
 	}
 
 	private void checkCollision() {
 		// TODO Auto-generated method stub
-		// Body head = Snake.body.get(0);
-		// Fill in here
 		for (IRenderable i : RenderableHolder.getInstance().getEntities()) {
 			if (i instanceof Bullet) {
 				if (isCollide(player, (Bullet) i)) {
 					((Bullet) i).setDestroy();
 					player.decreaseLife();
 				}
+				if(player.colorType == ((Bullet)i).colorType) {
+					if(isCollide(slash, (Bullet) i))
+						((Bullet) i).setDestroy();
+				}
 			}
 			if(i instanceof BossChar){
 				if(isCollide(player, (BossChar) i)) {
 					player.decreaseLife();
 				}
+				if(isCollide(slash, (BossChar) i))
+					 boss.decreaseLife();
 			}
 		}
 
 	}
-
-	/*
-	 * private void checkDead(){ if(arrow.getX()<0 || arrow.getX()>451 ||
-	 * arrow.getY()<0 || arrow.getY()>451){ arrow.isDestroy = true; }
-	 * 
-	 * }
-	 */
 
 	private void move() {
         // TODO Auto-generated method stub
