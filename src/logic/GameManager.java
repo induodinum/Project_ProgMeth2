@@ -43,7 +43,7 @@ public class GameManager {
 			int xx = rand.nextInt(470);
 			int yy = rand.nextInt(470);
 			Bullet bullet = new Bullet(boss.getX() - 10, boss.getY());
-			addEntity(bullet);
+			// addEntity(bullet);
 		}
 	}
 
@@ -96,23 +96,18 @@ public class GameManager {
 		// TODO Auto-generated method stub
 		// walk according to received key
 		if (!CodeUtility.keyPressed.isEmpty()) {
-				if (CodeUtility.keyPressed.contains(KeyCode.A)&&player.getX()-10>=50) {
-					player.setX(player.getX() - 10);
-					if (player.getY() + 15 <= 475 && !CodeUtility.keyPressed.contains(KeyCode.W)) {
-						player.setY(player.getY() + 15);
-					}
-				}
-				if (CodeUtility.keyPressed.contains(KeyCode.D)&&player.getX()+10<=700) {
-					player.setX(player.getX() + 10);
-					if (player.getY() + 15 <= 475 && !CodeUtility.keyPressed.contains(KeyCode.W)) {
-						player.setY(player.getY() + 15);
-					}
-				}
-				if (CodeUtility.keyPressed.contains(KeyCode.W)&&player.getY()-15>=50) {
-					player.setY(player.getY() - 15);
-				}
-			} else if (player.getY() + 15 <= 475) {
-				player.setY(player.getY() + 15);
+			if (CodeUtility.keyPressed.contains(KeyCode.A) && player.getX() - 10 >= 50) {
+				player.setX(player.getX() - 10);
+			}
+			if (CodeUtility.keyPressed.contains(KeyCode.D) && player.getX() + 10 <= 700) {
+				player.setX(player.getX() + 10);
+			}
+			if (CodeUtility.keyPressed.contains(KeyCode.W) && player.getY() - 15 >= 50) {
+				player.setY(player.getY() - 15);
+			}
+		}
+		if (player.getY() + 15 <= 475 && !CodeUtility.keyPressed.contains(KeyCode.W)) {
+			player.setY(player.getY() + 15);
 		}
 	}
 
