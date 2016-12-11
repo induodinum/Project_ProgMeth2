@@ -12,7 +12,7 @@ public class RenderableHolder {
 	private List<IRenderable> entities;
 	private Comparator<IRenderable> comparator;
 	public static Image[] playerCharLeft,playerCharRight,playerCharAttackLeft,playerCharAttackRight, bullet;
-	public static Image bossChar;
+	public static Image bossChar,slashLeft,slashRight;
 
 	public RenderableHolder() {
 		entities = new ArrayList<IRenderable>();
@@ -61,6 +61,8 @@ public class RenderableHolder {
 		bullet[0] = new Image(loader.getResourceAsStream("bullet0.png"));
 		bullet[1] = new Image(loader.getResourceAsStream("bullet1.png"));
 		bullet[2] = new Image(loader.getResourceAsStream("bullet2.png"));
+		slashLeft = new Image(loader.getResourceAsStream("slashLeft.png"));
+		slashRight = new Image(loader.getResourceAsStream("slashRight.png"));
 
 	}
 

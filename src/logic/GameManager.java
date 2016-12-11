@@ -13,6 +13,7 @@ public class GameManager {
 	public static int hp = 100;
 	private PlayerChar player;
 	private BossChar boss;
+	private Slash slash;
 
 	public GameManager() {
 		player = new PlayerChar(150, 500, 0);
@@ -49,6 +50,7 @@ public class GameManager {
 				player.delay--;
 			}else{
 				player.setAttack(false);
+				slash.setDestroy();
 			}
 		}
 	}
@@ -135,6 +137,12 @@ public class GameManager {
 			if(new_code == KeyCode.K){
 				player.setAttack(true);
 				player.delay = 3;
+				if(player.faceDirection == 1){
+					slash = new Slash(player.getX() + player.getWidth(), player.getY(), player);
+				}else{
+					slash = new Slash(player.getX() - 75, player.getY(), player);
+				}
+				addEntity(slash);
 			}
 			
 		}
