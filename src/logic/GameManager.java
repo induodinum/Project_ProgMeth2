@@ -15,7 +15,7 @@ public class GameManager {
 	private BossChar boss;
 
 	public GameManager() {
-		player = new PlayerChar(150, 475, 0);
+		player = new PlayerChar(150, 500, 0);
 		boss = new BossChar(550, 400);
 		RenderableHolder.getInstance().add(player);
 		RenderableHolder.getInstance().add(boss);
@@ -93,30 +93,44 @@ public class GameManager {
 	 */
 
 	private void move() {
-		// TODO Auto-generated method stub
-		// walk according to received key
-		if (!CodeUtility.keyPressed.isEmpty()) {
-			if (CodeUtility.keyPressed.contains(KeyCode.A) && player.getX() - 10 >= 50) {
-				player.setX(player.getX() - 10);
-			}
-			if (CodeUtility.keyPressed.contains(KeyCode.D) && player.getX() + 10 <= 700) {
-				player.setX(player.getX() + 10);
-			}
-			if (CodeUtility.keyPressed.contains(KeyCode.W) && player.getY() - 15 >= 50) {
-				player.setY(player.getY() - 15);
-			}
-		}
-		if (player.getY() + 15 <= 475 && !CodeUtility.keyPressed.contains(KeyCode.W)) {
-			player.setY(player.getY() + 15);
-		}
-	}
+        // TODO Auto-generated method stub
+        // walk according to received key
+        if (!CodeUtility.keyPressed.isEmpty()) {
+            if (CodeUtility.keyPressed.contains(KeyCode.A) && player.getX() - 5 >= 50) {
+                player.setX(player.getX() - 5);
+            }
+            if (CodeUtility.keyPressed.contains(KeyCode.D) && player.getX() + 5 <= 700) {
+                player.setX(player.getX() + 5);
+            }
+            if (CodeUtility.keyPressed.contains(KeyCode.W) && player.getY() -10 >= 50) {
+                player.setY(player.getY() - 10);
+            }
+        }
+        if (player.getY() + 10 <= 500 && !CodeUtility.keyPressed.contains(KeyCode.W)) {
+            player.setY(player.getY() + 10);
+        }
+    }
 
 	public void receiveKey(KeyCode new_code) {
 		// TODO Auto-generated method stub
 		if (!CodeUtility.keyPressed.contains(new_code)) {
 			CodeUtility.keyPressed.add(new_code);
 			CodeUtility.keyTriggered.add(new_code);
-
+			if(new_code == KeyCode.J){
+				if(player.getX()-100 >= 50){
+					player.setX(player.getX() - 100);
+				}else{
+					player.setX(50);
+				}
+				
+			}
+			if(new_code == KeyCode.L){
+				if(player.getX()+100 <= 650){
+					player.setX(player.getX() + 100);
+				}else{
+					player.setX(650);
+				}
+			}
 			move();
 		}
 	}

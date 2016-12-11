@@ -11,12 +11,15 @@ public class RenderableHolder {
 	private static final RenderableHolder instance = new RenderableHolder();
 	private List<IRenderable> entities;
 	private Comparator<IRenderable> comparator;
-	public static Image[] playerChar, bullet;
+	public static Image[] playerCharLeft,playerCharRight,playerCharAttackLeft,playerCharAttackRight, bullet;
 	public static Image bossChar;
 
 	public RenderableHolder() {
 		entities = new ArrayList<IRenderable>();
-		playerChar = new Image[3];
+		playerCharLeft = new Image[3];
+		playerCharRight = new Image[3];
+		playerCharAttackLeft = new Image[3];
+		playerCharAttackRight = new Image[3];
 		bullet = new Image[3];
 		comparator = (IRenderable o1, IRenderable o2) -> {
 			if (o1.getZ() > o2.getZ()) {
@@ -42,9 +45,18 @@ public class RenderableHolder {
 	private static void loadResource() {
 		// TODO Auto-generated method stub
 		ClassLoader loader = ClassLoader.getSystemClassLoader();
-		playerChar[0] = new Image(loader.getResource("playerChar0.png").toString(), 50, 75, false, false);
-		playerChar[1] = new Image(loader.getResource("playerChar1.png").toString(), 50, 75, false, false);
-		playerChar[2] = new Image(loader.getResource("playerChar2.png").toString(), 50, 75, false, false);
+		playerCharLeft[0] = new Image(loader.getResource("playerCharLeft0.png").toString(), 50, 50, false, false);
+		playerCharLeft[1] = new Image(loader.getResource("playerCharLeft1.png").toString(), 50, 50, false, false);
+		playerCharLeft[2] = new Image(loader.getResource("playerCharLeft2.png").toString(), 50, 50, false, false);
+		playerCharRight[0] = new Image(loader.getResource("playerCharRight0.png").toString(), 50, 50, false, false);
+		playerCharRight[1] = new Image(loader.getResource("playerCharRight1.png").toString(), 50, 50, false, false);
+		playerCharRight[2] = new Image(loader.getResource("playerCharRight2.png").toString(), 50, 50, false, false);
+		playerCharAttackLeft[0] = new Image(loader.getResource("playerCharAttackLeft0.png").toString(), 50, 50, false, false);
+		playerCharAttackLeft[1] = new Image(loader.getResource("playerCharAttackLeft1.png").toString(), 50, 50, false, false);
+		playerCharAttackLeft[2] = new Image(loader.getResource("playerCharAttackLeft2.png").toString(), 50, 50, false, false);
+		playerCharAttackRight[0] = new Image(loader.getResource("playerCharAttackRight0.png").toString(), 50, 50, false, false);
+		playerCharAttackRight[1] = new Image(loader.getResource("playerCharAttackRight1.png").toString(), 50, 50, false, false);
+		playerCharAttackRight[2] = new Image(loader.getResource("playerCharAttackRight2.png").toString(), 50, 50, false, false);
 		bossChar = new Image(loader.getResource("bossChar.png").toString(), 150, 150, false, false);
 		bullet[0] = new Image(loader.getResourceAsStream("bullet0.png"));
 		bullet[1] = new Image(loader.getResourceAsStream("bullet1.png"));

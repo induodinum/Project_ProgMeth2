@@ -6,10 +6,13 @@ public class PlayerChar extends Entity{
 	public static boolean isDestroy;
 	public static int moveSpeed;
 	public static int life,colorType;
-	public static int width,height;
+	//direction 1 == right, 0 == left
+	public static int faceDirection = 1;
+	private int animationFrame = 0;
+	private boolean attack = false;
 	public PlayerChar(int x, int y,int colorType) {
 		//Fill in here
-		super(x, y, 50, 75);
+		super(x, y, 50, 50);
 		life = 5;
 		isDestroy = false;
 		z = 2;
@@ -21,11 +24,41 @@ public class PlayerChar extends Entity{
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		if(colorType == 0){
-			gc.drawImage(RenderableHolder.playerChar[0], x, y);
+			if(isAttack()){
+				if(faceDirection == 1){
+					gc.drawImage(RenderableHolder.playerCharAttackRight[0], x, y);
+				}else{
+					gc.drawImage(RenderableHolder.playerCharAttackLeft[0], x, y);
+				}
+			}else if(faceDirection == 1){
+				gc.drawImage(RenderableHolder.playerCharRight[0], x, y);
+			}else{
+				gc.drawImage(RenderableHolder.playerCharLeft[1], x, y);
+			}
 		}else if(colorType == 1){
-			gc.drawImage(RenderableHolder.playerChar[1], x, y);
+			if(isAttack()){
+				if(faceDirection == 1){
+					gc.drawImage(RenderableHolder.playerCharAttackRight[1], x, y);
+				}else{
+					gc.drawImage(RenderableHolder.playerCharAttackLeft[1], x, y);
+				}
+			}else if(faceDirection == 1){
+				gc.drawImage(RenderableHolder.playerCharRight[1], x, y);
+			}else{
+				gc.drawImage(RenderableHolder.playerCharLeft[1], x, y);
+			}
 		}else if(colorType == 2){
-			gc.drawImage(RenderableHolder.playerChar[2], x, y);
+			if(isAttack()){
+				if(faceDirection == 1){
+					gc.drawImage(RenderableHolder.playerCharAttackRight[2], x, y);
+				}else{
+					gc.drawImage(RenderableHolder.playerCharAttackLeft[2], x, y);
+				}
+			}else if(faceDirection == 1){
+				gc.drawImage(RenderableHolder.playerCharRight[2], x, y);
+			}else{
+				gc.drawImage(RenderableHolder.playerCharLeft[2], x, y);
+			}
 		}
 		
 	}
@@ -46,4 +79,13 @@ public class PlayerChar extends Entity{
 			setDestroy();
 		}
 	}
+	
+	public boolean isAttack(){
+		return attack;
+	}
+	
+	public void setAttack(boolean attack){
+		this.attack = attack;
+	}
+	
 }
