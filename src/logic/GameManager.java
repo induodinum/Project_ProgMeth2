@@ -42,7 +42,7 @@ public class GameManager {
 			Random rand = new Random();
 			int xx = rand.nextInt(200);
 			Bullet bullet = new Bullet(boss.getX() - xx, boss.getY());
-//			 addEntity(bullet);
+			 addEntity(bullet);
 		}
 		if(timer % 4 == 0){
 			if(player.delay>0){
@@ -109,9 +109,11 @@ public class GameManager {
         if (!CodeUtility.keyPressed.isEmpty()) {
             if (CodeUtility.keyPressed.contains(KeyCode.A) && player.getX() - 5 >= 50) {
                 player.setX(player.getX() - 5);
+                player.faceDirection = 0;
             }
             if (CodeUtility.keyPressed.contains(KeyCode.D) && player.getX() + 5 <= 700) {
                 player.setX(player.getX() + 5);
+                player.faceDirection = 1;
             }
             if (CodeUtility.keyPressed.contains(KeyCode.W) && player.getY() -10 >= 50) {
                 player.setY(player.getY() - 10);

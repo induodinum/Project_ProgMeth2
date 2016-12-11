@@ -34,7 +34,7 @@ public class PlayerChar extends Entity{
 			}else if(faceDirection == 1){
 				gc.drawImage(RenderableHolder.playerCharRight[0], x, y);
 			}else{
-				gc.drawImage(RenderableHolder.playerCharLeft[1], x, y);
+				gc.drawImage(RenderableHolder.playerCharLeft[0], x, y);
 			}
 		}else if(colorType == 1){
 			if(isAttack()){
