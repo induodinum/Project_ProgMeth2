@@ -51,6 +51,13 @@ public class GameManager {
 		moveBullet();
 		bossMove();
 		checkCollision();
+		if(boss.isDestroy()){
+			for (IRenderable i : RenderableHolder.getInstance().getEntities()) {
+				if (i instanceof Bullet) {
+					((Bullet) i).setDestroy();
+				}
+			}
+		}
 		removeDestroyEntity();
 		spawnBullet();
 		decreaseDelay();
@@ -231,7 +238,7 @@ public class GameManager {
 		}
 		if (boss.life < 6) {
 			spawnDelay = 10;
-			boss.setSpeed(5);
+			boss.setSpeed(3);
 		}
 		if (boss.getDirectionX() == -1) {
 			boss.setX(boss.getX() - boss.getSpeed());
