@@ -14,7 +14,7 @@ public class PlayerChar extends Entity{
 	public PlayerChar(int x, int y,int colorType) {
 		//Fill in here
 		super(x, y, 50, 50);
-		life = 5;
+		life = 10;
 		isDestroy = false;
 		z = 3;
 		this.colorType=colorType;

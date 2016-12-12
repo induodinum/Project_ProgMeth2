@@ -12,7 +12,7 @@ public class BossChar extends Entity{
 	public BossChar(int x, int y) {
 		//Fill in here
 		super(x,y,150,150);
-		life = 10;
+		life = 15;
 		isDestroy = false;
 		z = 2;
 		

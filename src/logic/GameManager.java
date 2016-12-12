@@ -44,7 +44,7 @@ public class GameManager {
 		removeDestroyEntity();
 		if (timer % 30 == 0 && !player.isDestroy() && !boss.isDestroy()) {
 			Random rand = new Random();
-			int colorType = rand.nextInt(3);
+			int colorType = rand.nextInt(4)%3;
 			int moveSpeedX = rand.nextInt(3);
 			int moveSpeedY = rand.nextInt(3);
 			while(moveSpeedX == 0 && moveSpeedY == 0){
@@ -117,7 +117,18 @@ public class GameManager {
 			if (i instanceof Bullet) {
 				if (isCollide(player, (Bullet) i)) {
 					((Bullet) i).setDestroy();
-					player.decreaseLife();
+					if(player.colorType == 0){
+						player.decreaseLife();
+						player.decreaseLife();
+						player.decreaseLife();
+						player.decreaseLife();
+						player.decreaseLife();
+					}else if(player.colorType == 1){
+						player.decreaseLife();
+						player.decreaseLife();
+					}else{
+						player.decreaseLife();
+					}
 				}
 				if(player.colorType == ((Bullet)i).colorType) {
 					if(isCollide(slash, (Bullet) i))
@@ -129,7 +140,13 @@ public class GameManager {
 					player.decreaseLife();
 				}
 				if(isCollide(slash, (BossChar) i) && boss.delay == 0){
-					boss.decreaseLife();
+					if(player.colorType == 0){
+						boss.decreaseLife();
+						boss.decreaseLife();
+					}else{
+						boss.decreaseLife();
+					}
+					
 					System.out.println("jeb");
 					boss.delay = 4;
 					AudioClip jeb = new AudioClip(ClassLoader.getSystemResource("jeb.m4a").toString());
