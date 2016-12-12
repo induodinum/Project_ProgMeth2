@@ -24,12 +24,12 @@ public class Bullet extends Entity {
 			this.moveSpeedY = moveSpeedY + 3;
 		}else if(colorType == 1){
 			//Green = slow, 1 bounce
-			bounce = 1;
+			bounce = 2;
 			this.moveSpeedX = (moveSpeedX / 2) + 1;
 			this.moveSpeedY = (moveSpeedY / 2) + 1;
 		}else if(colorType == 2){
 			//Blue = normal, no bounce
-			bounce = 0;
+			bounce = 1;
 			this.moveSpeedX = moveSpeedX + 1;
 			this.moveSpeedY = moveSpeedY + 1;
 		}

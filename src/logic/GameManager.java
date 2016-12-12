@@ -41,7 +41,7 @@ public class GameManager {
 		bossMove();
 		checkCollision();
 		removeDestroyEntity();
-		if (timer % 20 == 0 && !player.isDestroy()) {
+		if (timer % 30 == 0 && !player.isDestroy() && !boss.isDestroy()) {
 			Random rand = new Random();
 			int colorType = rand.nextInt(3);
 			int moveSpeedX = rand.nextInt(3);
@@ -187,7 +187,7 @@ public class GameManager {
 				}else if(outOfStageY(((Bullet)i))){
 					if(((Bullet)i).bounce > 0){
 						((Bullet)i).bounce--;
-						((Bullet)i).moveDirectionX *= -1;
+						((Bullet)i).moveDirectionY *= -1;
 						moveBulletNormal(i);
 					}else if(((Bullet)i).bounce <= 0){
 						((Bullet)i).setDestroy();
@@ -227,9 +227,7 @@ public class GameManager {
             }
         }
     }
-//directionX=0 is left
-    //directionY=1 is down
-	
+
 	private boolean outOfStageX(Bullet b){
 		return b.getX() < 50 || b.getX()+b.getWidth() > 750;
 	}
