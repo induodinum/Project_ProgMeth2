@@ -4,7 +4,7 @@ import javafx.scene.canvas.GraphicsContext;
 
 public class BossChar extends Entity {
 	public static boolean isDestroy;
-<<<<<<< HEAD
+
 	public static int life, colorType;
 	public int delay = 0;
 	public int directionX = 1, directionY = 0;
@@ -12,13 +12,7 @@ public class BossChar extends Entity {
 
 	// directionX=0 is left
 	// directionY=1 is down
-=======
-	public static int life,colorType;
-	public static int delay=0;
-	public static int directionX = 1, directionY = 0;
-    //directionX=0 is left
-    //directionY=1 is down
->>>>>>> origin/master
+
 	public BossChar(int x, int y) {
 		// Fill in here
 		super(x, y, 150, 150);
