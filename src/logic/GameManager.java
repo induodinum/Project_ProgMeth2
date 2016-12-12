@@ -224,19 +224,19 @@ public class GameManager {
 	public void bossMove() {
         if(boss.life>=4){
         	if (boss.getDirectionX() == -1 && boss.getX() == 50) {
-                boss.setDirectionY(-1);
+                boss.setDirectionY(1);
                 boss.setDirectionX(0);
             } 
         	else if(boss.getDirectionY()== -1 && boss.getY() == 50){
-        		boss.setDirectionX(1);
+        		boss.setDirectionX(-1);
         		boss.setDirectionY(0);
         	}
         	else if (boss.getDirectionX() == 1 && boss.getX() == 600) {
-                boss.setDirectionY(1);
+                boss.setDirectionY(-1);
                 boss.setDirectionX(0);
             }
         	else if(boss.getDirectionY() == 1 && boss.getY() == 400){
-        		boss.setDirectionX(-1);
+        		boss.setDirectionX(1);
         		boss.setDirectionY(0);
         	}
         }
