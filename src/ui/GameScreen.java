@@ -17,6 +17,7 @@ import model.Entity;
 
 public class GameScreen extends Canvas {
 	public static int screen_width, screen_height;
+	public Image bg = new Image(ClassLoader.getSystemResource("background.png").toString(),800,600,false,false);
 
 	public GameScreen(int width, int height) {
 		super(width, height);
@@ -28,6 +29,7 @@ public class GameScreen extends Canvas {
 		GraphicsContext gc = this.getGraphicsContext2D();
 		gc.setFill(Color.LIGHTGRAY);
 		gc.fillRect(0, 0, screen_width, screen_height);
+		gc.drawImage(bg, 0, 0);
 		Image brick = new Image(ClassLoader.getSystemResource("brick.png").toString(), 50, 50, false, false);
 		for (int i = 0; i < screen_width; i += 50) {
 			for (int j = 0; j < 600; j += 50) {

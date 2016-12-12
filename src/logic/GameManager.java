@@ -6,6 +6,7 @@ import java.util.Random;
 import model.IRenderable;
 import model.RenderableHolder;
 import javafx.scene.input.KeyCode;
+import javafx.scene.media.AudioClip;
 import model.*;
 
 public class GameManager {
@@ -127,10 +128,14 @@ public class GameManager {
 				if(isCollide(player, (BossChar) i)) {
 					player.decreaseLife();
 				}
+				if(boss.delay == 3){
+					AudioClip jeb = new AudioClip(ClassLoader.getSystemResource("jeb.m4a").toString());
+					jeb.play(0.3);
+				}
 				if(isCollide(slash, (BossChar) i) && boss.delay == 0){
 					boss.decreaseLife();
 					System.out.println("jeb");
-					boss.delay = 4;
+					boss.delay = 5;
 				}
 					 
 			}
@@ -255,6 +260,9 @@ public class GameManager {
 				slash.setFaceDirection(player.faceDirection);
 				slash.delay = 2;
 				addEntity(slash);
+				AudioClip slashh = new AudioClip(ClassLoader.getSystemResource("slash.m4a").toString());
+				slashh.setVolume(0.05);
+				slashh.play();
 			}
 			
 		}
