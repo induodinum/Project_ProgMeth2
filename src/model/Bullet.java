@@ -20,18 +20,18 @@ public class Bullet extends Entity {
 		z = 3;
 		this.colorType = colorType;
 		if (colorType == 0) {
-			// RED = fast, no bounce
-			bounce = 0;
+			// RED = fast, 1 bounce
+			bounce = 1;
 			this.moveSpeedX = moveSpeedX + 3;
 			this.moveSpeedY = moveSpeedY + 3;
 		} else if (colorType == 1) {
-			// Green = slow, 1 bounce
-			bounce = 2;
+			// Green = slow, 2 bounce
+			bounce = 3;
 			this.moveSpeedX = (moveSpeedX / 2) + 1;
 			this.moveSpeedY = (moveSpeedY / 2) + 1;
 		} else if (colorType == 2) {
-			// Blue = normal, no bounce
-			bounce = 1;
+			// Blue = normal, 2 bounce
+			bounce = 2;
 			this.moveSpeedX = moveSpeedX + 1;
 			this.moveSpeedY = moveSpeedY + 1;
 		}

@@ -81,6 +81,11 @@ public class PlayerChar extends Entity {
 			setDestroy();
 		}
 	}
+	
+	public void increaseLife() {
+		if(life<10)
+			life++;
+	}
 
 	public boolean isAttack() {
 		return attack;

@@ -16,6 +16,7 @@ public class GameManager {
 	private PlayerChar player;
 	private BossChar boss;
 	private Slash slash = new Slash(1000, 1000, player);
+	private int counter = 0;
 
 	public GameManager() {
 		player = new PlayerChar(150, 500, 0);
@@ -98,8 +99,15 @@ public class GameManager {
 					}
 				}
 				if (player.colorType == ((Bullet) i).colorType) {
-					if (isCollide(slash, (Bullet) i))
+					if (isCollide(slash, (Bullet) i)){
 						((Bullet) i).setDestroy();
+						counter++;
+						if(counter == 5){
+							counter = 0;
+							player.increaseLife();
+						}
+					}
+						
 				}
 			}
 			if (i instanceof BossChar) {
@@ -222,8 +230,8 @@ public class GameManager {
 			}
 		}
 		if (boss.life < 6) {
-			spawnDelay = 15;
-			boss.setSpeed(3);
+			spawnDelay = 10;
+			boss.setSpeed(5);
 		}
 		if (boss.getDirectionX() == -1) {
 			boss.setX(boss.getX() - boss.getSpeed());
@@ -247,7 +255,7 @@ public class GameManager {
 
 	private void spawnBullet() {
 		if (timer % spawnDelay == 0 && !player.isDestroy() && !boss.isDestroy()) {
-			int colorType = rand.nextInt(4) % 3;
+			int colorType = rand.nextInt(3);
 			int moveSpeedX = rand.nextInt(3);
 			int moveSpeedY = rand.nextInt(3);
 			while (moveSpeedX == 0 && moveSpeedY == 0) {
