@@ -6,7 +6,7 @@ public class BossChar extends Entity{
 	public static boolean isDestroy;
 	public static int life,colorType;
 	public static int delay=0;
-	public static int directionX = 0, directionY = 1;
+	public static int directionX = -1, directionY = 0;
     //directionX=0 is left
     //directionY=1 is down
 	public BossChar(int x, int y) {

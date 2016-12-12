@@ -222,29 +222,42 @@ public class GameManager {
 	}
 	
 	public void bossMove() {
-        if (boss.getDirectionX() == 0 && boss.getX() == 50) {
-            boss.setDirectionX(1);
-        } else if (boss.getDirectionX() == 1 && boss.getX() == 600) {
-            boss.setDirectionX(0);
+        if(boss.life>=4){
+        	if (boss.getDirectionX() == -1 && boss.getX() == 50) {
+                boss.setDirectionY(-1);
+                boss.setDirectionX(0);
+            } 
+        	else if(boss.getDirectionY()== -1 && boss.getY() == 50){
+        		boss.setDirectionX(1);
+        		boss.setDirectionY(0);
+        	}
+        	else if (boss.getDirectionX() == 1 && boss.getX() == 600) {
+                boss.setDirectionY(1);
+                boss.setDirectionX(0);
+            }
+        	else if(boss.getDirectionY() == 1 && boss.getY() == 400){
+        		boss.setDirectionX(-1);
+        		boss.setDirectionY(0);
+        	}
         }
-        if (boss.getDirectionX() == 0) {
+        if(boss.life<4&&boss.life>0){
+            if(boss.getDirectionY()==1 && boss.getY()==400){
+                boss.setDirectionY(-1);
+            }
+            else if(boss.getDirectionY()==-1 && boss.getY()==50){
+                boss.setDirectionY(1);
+            }
+        }
+        if (boss.getDirectionX() == -1) {
             boss.setX(boss.getX() - 2);
         } else if (boss.getDirectionX() == 1) {
             boss.setX(boss.getX() + 2);
         }
-        if(boss.life<4&&boss.life>0){
-            if(boss.getDirectionY()==1 && boss.getY()==400){
-                boss.setDirectionY(0);
-            }
-            else if(boss.getDirectionY()==0 && boss.getY()==50){
-                boss.setDirectionY(1);
-            }
-            if(boss.getDirectionY()==0){
-                boss.setY(boss.getY()-2);
-            }
-            else if(boss.getDirectionY()==1){
-                boss.setY(boss.getY()+2);
-            }
+        if(boss.getDirectionY()==-1){
+            boss.setY(boss.getY()-2);
+        }
+        else if(boss.getDirectionY()==1){
+            boss.setY(boss.getY()+2);
         }
     }
 
