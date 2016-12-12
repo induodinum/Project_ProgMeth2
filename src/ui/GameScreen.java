@@ -17,7 +17,7 @@ import model.Entity;
 
 public class GameScreen extends Canvas {
 	public static int screen_width, screen_height;
-	public Image bg = new Image(ClassLoader.getSystemResource("background.png").toString(),800,600,false,false);
+	public Image bg = new Image(ClassLoader.getSystemResource("background.png").toString(), 800, 600, false, false);
 
 	public GameScreen(int width, int height) {
 		super(width, height);
@@ -39,8 +39,8 @@ public class GameScreen extends Canvas {
 			}
 		}
 		List<IRenderable> entities = RenderableHolder.getInstance().getEntities();
-		for(IRenderable i : entities){
-			if(!i.isDestroy()){
+		for (IRenderable i : entities) {
+			if (!i.isDestroy()) {
 				i.draw(gc);
 			}
 		}
@@ -50,12 +50,12 @@ public class GameScreen extends Canvas {
 	public void drawHPbar(GraphicsContext gc) {
 		int player_life = PlayerChar.life;
 		int boss_life = BossChar.life;
-		for(int i=0;i<player_life;i++){
-			gc.drawImage(RenderableHolder.getInstance().heart, 120+(40*i), 650);
+		for (int i = 0; i < player_life; i++) {
+			gc.drawImage(RenderableHolder.getInstance().heart, 120 + (40 * i), 650);
 		}
 		gc.drawImage(RenderableHolder.getInstance().playerCharRight[0], 50, 630);
-		for(int j=0;j<boss_life;j++){
-			gc.drawImage(RenderableHolder.getInstance().heart, 120+(40*j), 720);
+		for (int j = 0; j < boss_life; j++) {
+			gc.drawImage(RenderableHolder.getInstance().heart, 120 + (40 * j), 720);
 		}
 		gc.drawImage(RenderableHolder.getInstance().bossCharMini, 50, 700);
 	}
