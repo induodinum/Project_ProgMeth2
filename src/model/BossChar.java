@@ -6,6 +6,9 @@ public class BossChar extends Entity{
 	public static boolean isDestroy;
 	public static int life,colorType;
 	public static int delay=0;
+	public static int directionX = 0, directionY = 1;
+    //directionX=0 is left
+    //directionY=1 is down
 	public BossChar(int x, int y) {
 		//Fill in here
 		super(x,y,150,150);
@@ -39,4 +42,20 @@ public class BossChar extends Entity{
 			setDestroy();
 		}
 	}
+	
+	public void setDirectionX(int direction) {
+        directionX = direction;
+    }
+
+    public int getDirectionX(){
+        return directionX;
+    }
+
+    public void setDirectionY(int direction){
+        directionY = direction;
+    }
+
+    public int getDirectionY(){
+        return directionY;
+    }
 }

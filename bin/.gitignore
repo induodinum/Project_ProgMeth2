@@ -1,9 +1,11 @@
 /application/
+/bgm.mp3
 /bossChar.png
 /brick.png
 /bullet0.png
 /bullet1.png
 /bullet2.png
+/heart.png
 /logic/
 /model/
 /playerCharAttackLeft0.png
@@ -21,5 +23,3 @@
 /slashLeft.png
 /slashRight.png
 /ui/
-/heart.png
-/bgm.mp3

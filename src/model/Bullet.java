@@ -4,16 +4,35 @@ import javafx.scene.canvas.GraphicsContext;
 
 public class Bullet extends Entity {
 	public boolean isDestroy;
-	public static int moveSpeed;
-	public static int moveDirectionX,moveDirectionY;
+	public int moveSpeedX,moveSpeedY;
+	//directionX 1==right, -1==left, directionY 1==down, -1==up, 0 = stand still
+	public int moveDirectionX,moveDirectionY;
 	public int life,colorType;
-	public Bullet(int x, int y, int colorType) {
+	public int bounce;
+	public Bullet(int x, int y, int colorType, int moveSpeedX, int moveSpeedY, int moveDirectionX, int moveDirectionY) {
 		//Fill in here
 		super(x,y,20,20);
-		moveSpeed = 5;
+		this.moveDirectionX = moveDirectionX;
+		this.moveDirectionY = moveDirectionY;
 		isDestroy = false;
-		z = 2;
+		z = 3;
 		this.colorType = colorType;
+		if(colorType == 0){
+			//RED = fast, no bounce
+			bounce = 0;
+			this.moveSpeedX = moveSpeedX * 2;
+			this.moveSpeedY = moveSpeedY * 2;
+		}else if(colorType == 1){
+			//Green = slow, 1 bounce
+			bounce = 1;
+			this.moveSpeedX = moveSpeedX / 2;
+			this.moveSpeedY = moveSpeedY / 2;
+		}else if(colorType == 2){
+			//Blue = normal, no bounce
+			bounce = 0;
+			this.moveSpeedX = moveSpeedX;
+			this.moveSpeedY = moveSpeedY;
+		}
 		
 	}
 

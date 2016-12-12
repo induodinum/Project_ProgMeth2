@@ -37,13 +37,32 @@ public class GameManager {
 		// Fill in here
 		timer++;
 		move();
+		moveBullet();
+		bossMove();
 		checkCollision();
 		removeDestroyEntity();
 		if (timer % 20 == 0 && !player.isDestroy()) {
 			Random rand = new Random();
 			int xx = rand.nextInt(200);
-			int yy = rand.nextInt(3);
-			addEntity(new Bullet(boss.getX() - xx, boss.getY(),yy));
+			int colorType = rand.nextInt(3);
+			int moveSpeedX = rand.nextInt(3);
+			int moveSpeedY = rand.nextInt(3);
+			while(moveSpeedX == 0 && moveSpeedY == 0){
+				moveSpeedX = rand.nextInt(3) ;
+				moveSpeedY = rand.nextInt(3) ;
+			}
+			System.out.println("X " + moveSpeedX);
+			System.out.println("Y " + moveSpeedY);
+			int moveDirectionX = rand.nextInt(3) - 1;
+			int moveDirectionY = rand.nextInt(3) - 1;
+			while(moveDirectionX == 0 && moveDirectionY == 0){
+				moveDirectionX = rand.nextInt(3) - 1;
+				moveDirectionY = rand.nextInt(3) - 1;
+			}
+			System.out.println("X " + moveDirectionX);
+			System.out.println("Y " + moveDirectionY);
+			addEntity(new Bullet(boss.getX() - xx, boss.getY(), colorType, moveSpeedX, moveSpeedY, moveDirectionX, moveDirectionY));
+			System.out.println("added bullet");
 		}
 		if(timer % 10 == 0){
 			if(player.delay>0){
@@ -141,15 +160,94 @@ public class GameManager {
         }
     }
 
+	private void moveBulletNormal(IRenderable i){
+		if(((Bullet)i).moveDirectionX == 1){
+			((Bullet)i).setX(((Bullet)i).getX() + ((Bullet)i).moveSpeedX);
+		}else if(((Bullet)i).moveDirectionX == -1){
+			((Bullet)i).setX(((Bullet)i).getX() - ((Bullet)i).moveSpeedX);
+		}
+		if(((Bullet)i).moveDirectionY == 1){
+			((Bullet)i).setY(((Bullet)i).getY() + ((Bullet)i).moveSpeedY);
+		}else if(((Bullet)i).moveDirectionY == -1){
+			((Bullet)i).setY(((Bullet)i).getY() - ((Bullet)i).moveSpeedY);
+		}
+	}
+	
+	private void moveBullet(){
+		for (IRenderable i : RenderableHolder.getInstance().getEntities()){
+			if(i instanceof Bullet){
+				//check out of stage
+				if(outOfStageX(((Bullet)i))){
+					if(((Bullet)i).bounce > 0){
+						((Bullet)i).bounce--;
+						((Bullet)i).moveDirectionX *= -1;
+						moveBulletNormal(i);
+					}else if(((Bullet)i).bounce <= 0){
+						((Bullet)i).setDestroy();
+					}
+				}else if(outOfStageY(((Bullet)i))){
+					if(((Bullet)i).bounce > 0){
+						((Bullet)i).bounce--;
+						((Bullet)i).moveDirectionX *= -1;
+						moveBulletNormal(i);
+					}else if(((Bullet)i).bounce <= 0){
+						((Bullet)i).setDestroy();
+					}
+					
+				}else{
+					//move normally
+					moveBulletNormal(i);
+				}
+			}
+		}
+	}
+	
+	public void bossMove() {
+        if (boss.getDirectionX() == 0 && boss.getX() == 50) {
+            boss.setDirectionX(1);
+        } else if (boss.getDirectionX() == 1 && boss.getX() == 600) {
+            boss.setDirectionX(0);
+        }
+        if (boss.getDirectionX() == 0) {
+            boss.setX(boss.getX() - 2);
+        } else if (boss.getDirectionX() == 1) {
+            boss.setX(boss.getX() + 2);
+        }
+        if(boss.life<4&&boss.life>0){
+            if(boss.getDirectionY()==1 && boss.getY()==400){
+                boss.setDirectionY(0);
+            }
+            else if(boss.getDirectionY()==0 && boss.getY()==50){
+                boss.setDirectionY(1);
+            }
+            if(boss.getDirectionY()==0){
+                boss.setY(boss.getY()-2);
+            }
+            else if(boss.getDirectionY()==1){
+                boss.setY(boss.getY()+2);
+            }
+        }
+    }
+//directionX=0 is left
+    //directionY=1 is down
+	
+	private boolean outOfStageX(Bullet b){
+		return b.getX() < 50 || b.getX()+b.getWidth() > 750;
+	}
+	
+	private boolean outOfStageY(Bullet b){
+		 return b.getY() < 50 || b.getY() + b.getHeight() > 550;
+	}
+	
 	public void receiveKey(KeyCode new_code) {
 		// TODO Auto-generated method stub
 		if (!CodeUtility.keyPressed.contains(new_code)) {
 			CodeUtility.keyPressed.add(new_code);
 			CodeUtility.keyTriggered.add(new_code);
-			if(new_code == KeyCode.J){
+			if(new_code == KeyCode.J && !player.isAttack()){
 				player.colorType = (player.colorType + 1)%3;
 			}
-			if(new_code == KeyCode.K && player.delay == 0){
+			if(new_code == KeyCode.K && player.delay == 0 && !player.isDestroy()){
 				player.setAttack(true);
 				player.delay = 3;
 				if(player.faceDirection == 1){

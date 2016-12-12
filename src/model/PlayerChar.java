@@ -16,7 +16,7 @@ public class PlayerChar extends Entity{
 		super(x, y, 50, 50);
 		life = 5;
 		isDestroy = false;
-		z = 2;
+		z = 3;
 		this.colorType=colorType;
 		
 	}

@@ -10,7 +10,7 @@ public class Slash extends Entity {
 		//Fill in here
 		super(x,y,100,80);
 		isDestroy = false;
-		z = 3;
+		z = 4;
 		
 	}
 
