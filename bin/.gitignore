@@ -1,4 +1,5 @@
 /application/
+/background.png
 /bgm.mp3
 /bossChar.png
 /brick.png
@@ -6,6 +7,7 @@
 /bullet1.png
 /bullet2.png
 /heart.png
+/jeb.m4a
 /logic/
 /model/
 /playerCharAttackLeft0.png
@@ -20,10 +22,7 @@
 /playerCharRight0.png
 /playerCharRight1.png
 /playerCharRight2.png
+/slash.m4a
 /slashLeft.png
 /slashRight.png
 /ui/
-/background.png
-/slashhh.m4a
-/slash.m4a
-/jeb.m4a

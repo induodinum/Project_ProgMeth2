@@ -128,14 +128,12 @@ public class GameManager {
 				if(isCollide(player, (BossChar) i)) {
 					player.decreaseLife();
 				}
-				if(boss.delay == 3){
-					AudioClip jeb = new AudioClip(ClassLoader.getSystemResource("jeb.m4a").toString());
-					jeb.play(0.3);
-				}
 				if(isCollide(slash, (BossChar) i) && boss.delay == 0){
 					boss.decreaseLife();
 					System.out.println("jeb");
-					boss.delay = 5;
+					boss.delay = 4;
+					AudioClip jeb = new AudioClip(ClassLoader.getSystemResource("jeb.m4a").toString());
+					jeb.play(0.3);
 				}
 					 
 			}
@@ -251,14 +249,14 @@ public class GameManager {
 			}
 			if(new_code == KeyCode.K && player.delay == 0 && !player.isDestroy()){
 				player.setAttack(true);
-				player.delay = 3;
+				player.delay = 5;
 				if(player.faceDirection == 1){
 					slash = new Slash(player.getX() + player.getWidth(), player.getY() - 15, player);
 				}else{
 					slash = new Slash(player.getX() - 100, player.getY() - 15, player);
 				}
 				slash.setFaceDirection(player.faceDirection);
-				slash.delay = 2;
+				slash.delay = 1;
 				addEntity(slash);
 				AudioClip slashh = new AudioClip(ClassLoader.getSystemResource("slash.m4a").toString());
 				slashh.setVolume(0.05);
