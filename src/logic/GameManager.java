@@ -43,7 +43,6 @@ public class GameManager {
 		removeDestroyEntity();
 		if (timer % 20 == 0 && !player.isDestroy()) {
 			Random rand = new Random();
-			int xx = rand.nextInt(200);
 			int colorType = rand.nextInt(3);
 			int moveSpeedX = rand.nextInt(3);
 			int moveSpeedY = rand.nextInt(3);
@@ -61,7 +60,7 @@ public class GameManager {
 			}
 			System.out.println("X " + moveDirectionX);
 			System.out.println("Y " + moveDirectionY);
-			addEntity(new Bullet(boss.getX() - xx, boss.getY(), colorType, moveSpeedX, moveSpeedY, moveDirectionX, moveDirectionY));
+			addEntity(new Bullet(boss.getX() + boss.getWidth()/2, boss.getY() + boss.getHeight()/2, colorType, moveSpeedX, moveSpeedY, moveDirectionX, moveDirectionY));
 			System.out.println("added bullet");
 		}
 		if(timer % 10 == 0){
