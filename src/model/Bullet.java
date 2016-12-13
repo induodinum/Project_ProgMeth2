@@ -8,7 +8,7 @@ public class Bullet extends Entity {
 	// directionX 1==right, -1==left, directionY 1==down, -1==up, 0 = stand
 	// still
 	public int moveDirectionX, moveDirectionY;
-	public int life, colorType;
+	public int colorType;
 	public int bounce;
 
 	public Bullet(int x, int y, int colorType, int moveSpeedX, int moveSpeedY, int moveDirectionX, int moveDirectionY) {

@@ -44,32 +44,32 @@ public class GameManager {
 	}
 
 	public void update() {
-		// TODO Auto-generated method stub
-		// Fill in here
-		try{
-			timer++;
-			move();
-			moveBullet();
-			bossMove();
-			checkCollision();
-			if(boss.isDestroy()||player.isDestroy()){
-				for (IRenderable i : RenderableHolder.getInstance().getEntities()) {
-					if (i instanceof Bullet) {
-						((Bullet) i).setDestroy();
-					}
-				}
-			}
-			removeDestroyEntity();
-			spawnBullet();
-			decreaseDelay();
-			if(player.isDestroy() && boss.isDestroy()){
-				throw new DrawException();
-			}
-		}catch(DrawException e){
-			System.out.println("how");
-		}
-		
-	}
+        // TODO Auto-generated method stub
+        // Fill in here
+        try{
+            timer++;
+            move();
+            moveBullet();
+            bossMove();
+            checkCollision();
+            if(boss.isDestroy()||player.isDestroy()){
+                for (IRenderable i : RenderableHolder.getInstance().getEntities()) {
+                    if (i instanceof Bullet) {
+                        ((Bullet) i).setDestroy();
+                    }
+                }
+            }
+            removeDestroyEntity();
+            spawnBullet();
+            decreaseDelay();
+            if(player.isDestroy()&&boss.isDestroy()){
+                throw new DrawException();
+            }
+        }catch(DrawException e){
+            System.exit(0);
+        }
+
+    }
 
 	private void removeDestroyEntity() {
 		// TODO Auto-generated method stub

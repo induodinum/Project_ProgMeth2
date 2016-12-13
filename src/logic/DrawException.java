@@ -7,10 +7,7 @@ public class DrawException extends Exception{
 	
 	public DrawException(){
 		super();
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("???");
-		alert.setHeaderText(null);
-		alert.setContentText("You win! but you also lose?");
+		System.out.println("draw");
 	}
 
 }

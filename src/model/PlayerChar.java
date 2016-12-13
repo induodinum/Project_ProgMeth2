@@ -4,7 +4,6 @@ import javafx.scene.canvas.GraphicsContext;
 
 public class PlayerChar extends Entity {
 	private boolean isDestroy;
-	public int moveSpeed;
 	public static int life, colorType;
 	// direction 1 == right, 0 == left
 	public int faceDirection = 1;

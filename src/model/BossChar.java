@@ -5,7 +5,7 @@ import javafx.scene.canvas.GraphicsContext;
 public class BossChar extends Entity {
 	public static boolean isDestroy;
 
-	public static int life, colorType;
+	public static int life;
 	public int delay = 0;
 	public int directionX = 1, directionY = 0;
 	private int speed = 2;

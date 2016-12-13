@@ -13,6 +13,8 @@ import ui.GameScreen;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.DialogEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.AudioClip;
@@ -54,10 +56,18 @@ public class Main extends Application {
 							Platform.runLater(new Runnable() {
 								public void run() {
 									Alert alert = new Alert(AlertType.INFORMATION);
+									
 									alert.setHeaderText(null);
 									alert.setTitle("GameOver");
 									alert.setContentText("git gud");
-									alert.showAndWait();
+									alert.show();
+									alert.setOnCloseRequest(new EventHandler<DialogEvent>() {
+
+						                @Override
+						                public void handle(DialogEvent event) {
+						                    System.exit(0);
+						                }
+						            });
 								}
 							});
 							break;
@@ -69,7 +79,14 @@ public class Main extends Application {
 									alert.setHeaderText(null);
 									alert.setTitle("You won");
 									alert.setContentText("got gud :D");
-									alert.showAndWait();
+									alert.show();
+									alert.setOnCloseRequest(new EventHandler<DialogEvent>() {
+
+						                @Override
+						                public void handle(DialogEvent event) {
+						                    System.exit(0);
+						                }
+						            });
 								}
 							});
 							break;
