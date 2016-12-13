@@ -46,21 +46,29 @@ public class GameManager {
 	public void update() {
 		// TODO Auto-generated method stub
 		// Fill in here
-		timer++;
-		move();
-		moveBullet();
-		bossMove();
-		checkCollision();
-		if(boss.isDestroy()){
-			for (IRenderable i : RenderableHolder.getInstance().getEntities()) {
-				if (i instanceof Bullet) {
-					((Bullet) i).setDestroy();
+		try{
+			timer++;
+			move();
+			moveBullet();
+			bossMove();
+			checkCollision();
+			if(boss.isDestroy()||player.isDestroy()){
+				for (IRenderable i : RenderableHolder.getInstance().getEntities()) {
+					if (i instanceof Bullet) {
+						((Bullet) i).setDestroy();
+					}
 				}
 			}
+			removeDestroyEntity();
+			spawnBullet();
+			decreaseDelay();
+			if(player.isDestroy() && boss.isDestroy()){
+				throw new DrawException();
+			}
+		}catch(DrawException e){
+			System.out.println("how");
 		}
-		removeDestroyEntity();
-		spawnBullet();
-		decreaseDelay();
+		
 	}
 
 	private void removeDestroyEntity() {
@@ -262,12 +270,18 @@ public class GameManager {
 
 	private void spawnBullet() {
 		if (timer % spawnDelay == 0 && !player.isDestroy() && !boss.isDestroy()) {
-			int colorType = rand.nextInt(3);
-			int moveSpeedX = rand.nextInt(3);
-			int moveSpeedY = rand.nextInt(3);
-			while (moveSpeedX == 0 && moveSpeedY == 0) {
+			int colorType,moveSpeedX,moveSpeedY;
+			try{
+				colorType = rand.nextInt(3);
 				moveSpeedX = rand.nextInt(3);
 				moveSpeedY = rand.nextInt(3);
+				if(moveSpeedX == 0 && moveSpeedY == 0){
+					throw new NotMovingException();
+				}
+			}catch(NotMovingException e){
+				colorType = rand.nextInt(3);
+				moveSpeedX = rand.nextInt(3) + 1;
+				moveSpeedY = rand.nextInt(3) + 1;
 			}
 			int moveDirectionX = rand.nextInt(3) - 1;
 			int moveDirectionY = rand.nextInt(3) - 1;

@@ -3,7 +3,7 @@ package model;
 import javafx.scene.canvas.GraphicsContext;
 
 public class PlayerChar extends Entity {
-	public boolean isDestroy;
+	private boolean isDestroy;
 	public int moveSpeed;
 	public static int life, colorType;
 	// direction 1 == right, 0 == left
