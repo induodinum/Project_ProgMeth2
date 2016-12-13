@@ -1,3 +1,7 @@
+/*
+ * Korpong Sawataksornchuen 5831004821
+ * Natt Ruangkriengsin 		5831016321 
+ */
 package model;
 
 import java.util.ArrayList;
