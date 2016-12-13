@@ -85,13 +85,13 @@ public class GameManager {
 	}
 
 	private boolean checkX(Entity a, Entity e) {
-		return (a.getX() + a.getWidth() > e.getX() && a.getX() < e.getX())
-				|| (e.getX() + e.getWidth() > a.getX() && e.getX() < a.getX());
+		return (a.getX() + a.getWidth() >= e.getX() && a.getX() <= e.getX())
+				|| (e.getX() + e.getWidth() >= a.getX() && e.getX() <= a.getX());
 	}
 
 	private boolean checkY(Entity a, Entity e) {
-		return (a.getY() + a.getHeight() > e.getY() && a.getY() < e.getY())
-				|| (e.getY() + e.getHeight() > a.getY() && e.getY() < a.getY());
+		return (a.getY() + a.getHeight() >= e.getY() && a.getY() <= e.getY())
+				|| (e.getY() + e.getHeight() >= a.getY() && e.getY() <= a.getY());
 	}
 
 	private void checkCollision() {
